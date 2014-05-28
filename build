@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 // --
 error_reporting(E_ALL);
@@ -19,27 +20,27 @@ foreach (array("BuildVersionBuilder", "MinifiedVersionBuilder") as $builder)
 	if ($builder->build() && $builder->save())
 		{
 		$r[] = "<h2>" . get_class($builder) . "</h2>";
-		$r[] = 
+		$r[] =
 			"<span style=\"color: #008000;\">SUCCESS: " .
-				"<a href=\"javascript:void(0);\" onclick=\"var e = document.getElementById('" . $id . "'); e.style.display = (e.style.display == 'none' ? 'block' : 'none');\">" . 
-					$builder->getTarget() . 
+				"<a href=\"javascript:void(0);\" onclick=\"var e = document.getElementById('" . $id . "'); e.style.display = (e.style.display == 'none' ? 'block' : 'none');\">" .
+					$builder->getTarget() .
 				"</a>" .
-			"</span>" . 
+			"</span>" .
 			"<div id=\"" . $id . "\" style=\"display: none; border: 1px solid silver; margin-top: 1em; padding: 0.5em;\">" .
-				highlight_string($builder->getSource(), true) . 
+				highlight_string($builder->getSource(), true) .
 			"</div>";
 		}
 	else
 		{
 		$failed = TRUE;
 		$r[] =  "" .
-			"<span style=\"color: #ae0000;\">FAILED: " . 
+			"<span style=\"color: #ae0000;\">FAILED: " .
 				$builder->getTarget() .
 			"</span>";
 		}
 	}
 if (PHP_SAPI != 'cli') {
-	echo "<!DOCTYPE HTML><html><head></head><body style=\"font-family: monospace;\"><h1>CssMin Build</h1>" . 
+	echo "<!DOCTYPE HTML><html><head></head><body style=\"font-family: monospace;\"><h1>CssMin Build</h1>" .
 join($r) . "</body><html>";
 	exit;
 }
