@@ -1,7 +1,7 @@
 <?php
 /**
  * CssMin Build-Builder.
- * 
+ *
  * @package		CssMin/Tools/Build
  * @link		http://code.google.com/p/cssmin/
  * @author		Joe Scylla <joe.scylla@gmail.com>
@@ -13,17 +13,17 @@ class BuildVersionBuilder extends aBuilder
 	{
 	/**
 	 * Overwrites {aBuilder::__construct()}. Sets the target.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function __construct()
 		{
 		parent::__construct();
-		$this->target = $this->path . "/build/CssMin.php";
+		$this->target = $this->path . "/CssMin.php";
 		}
 	/**
 	 * Implements {aBuilder::build()}.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function build()
