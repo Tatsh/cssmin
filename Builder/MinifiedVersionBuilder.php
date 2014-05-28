@@ -1,7 +1,7 @@
 <?php
 /**
  * CssMin Minified-Builder.
- * 
+ *
  * @package		CssMin/Tools/Build
  * @link		http://code.google.com/p/cssmin/
  * @author		Joe Scylla <joe.scylla@gmail.com>
@@ -14,18 +14,18 @@ class MinifiedVersionBuilder extends BuildVersionBuilder
 	private $parentTarget = "";
 	/**
 	 * Overwrites {BuildVersionBuilder::__construct()}. Sets the target.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function __construct()
 		{
 		parent::__construct();
 		$this->parentTarget = parent::getTarget();
-		$this->target = $this->path . "/minified/CssMin.php";
+		$this->target = $this->path . "/CssMin.minified.php";
 		}
 	/**
 	 * Implements {aBuilder::build()}.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function build()
@@ -36,7 +36,7 @@ class MinifiedVersionBuilder extends BuildVersionBuilder
 		$this->source = str_replace(array("<?php", "?>"), "", $this->source);
 		// --
 		$this->source = "<?php\n" . $this->getComment() . $this->source . "\n?>";
-		
+
 		return $this->source;
 		}
 	}
