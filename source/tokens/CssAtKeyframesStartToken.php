@@ -44,6 +44,11 @@ class CssAtKeyframesStartToken extends aCssAtBlockStartToken
 	 */
 	public function __toString()
 		{
+		/* Firefox ignores quoted names for some reason */
+		if ($this->AtRuleName === "-moz-keyframes")
+			{
+			return "@-moz-keyframes " . $this->Name . " {";
+			}
 		return "@" . $this->AtRuleName . " \"" . $this->Name . "\"{";
 		}
 	}
