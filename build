@@ -11,7 +11,7 @@ require("Builder/aBuilder.php");
 // --
 $r = array();
 $failed = FALSE;
-foreach (array("BuildVersionBuilder", "MinifiedVersionBuilder") as $builder)
+foreach (array("BuildVersionBuilder") as $builder)
 	{
 	require("Builder/" . $builder . ".php");
 	$builder	= new $builder();
@@ -51,4 +51,3 @@ else if ($failed) {
 }
 
 print "Successfully built.\n";
-?>
