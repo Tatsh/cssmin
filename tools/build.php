@@ -9,6 +9,7 @@ ini_set("highlight.default", "#000;");
 require("Builder/aBuilder.php");
 // --
 $r = array();
+$failed = FALSE;
 foreach (array("BuildVersionBuilder", "MinifiedVersionBuilder") as $builder)
 	{
 	require("Builder/" . $builder . ".php");
@@ -30,12 +31,23 @@ foreach (array("BuildVersionBuilder", "MinifiedVersionBuilder") as $builder)
 		}
 	else
 		{
+		$failed = TRUE;
 		$r[] =  "" .
 			"<span style=\"color: #ae0000;\">FAILED: " . 
 				$builder->getTarget() .
 			"</span>";
 		}
 	}
-echo "<!DOCTYPE HTML><html><head></head><body style=\"font-family: monospace;\"><h1>CssMin Build</h1>" . join($r) . "</body><html>";
-die;
+if (PHP_SAPI != 'cli') {
+	echo "<!DOCTYPE HTML><html><head></head><body style=\"font-family: monospace;\"><h1>CssMin Build</h1>" . 
+join($r) . "</body><html>";
+	exit;
+}
+else if ($failed) {
+	print "Failed to build.\n";
+	print $builder->getTarget() ."\n";
+	exit(1);
+}
+
+print "Successfully built.\n";
 ?>
